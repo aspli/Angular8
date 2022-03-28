@@ -19,13 +19,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReplacePipe,
     NavBarComponent,
     Error404Component,
-    CourseInfoComponent,
-    HttpClientModule
+    CourseInfoComponent    
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: 'courses', component: CourseListComponent

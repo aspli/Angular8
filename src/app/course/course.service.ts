@@ -17,16 +17,22 @@ export class CourseService{
         return this.httpClient.get<Course[]>(this.coursesUrl);
     }
 
-    retriveById(id: number): Course{
-        return COURSES.find((courseIterator: Course)=> courseIterator.id === id);
+    retriveById(id: number): Observable<Course>{
+        return this.httpClient.get<Course>(`${this.coursesUrl}/${id}`);
     }
 
-    save(course: Course): void{
+    save(course: Course): Observable<Course>{
         if(course.id){
-            const index = COURSES.findIndex((courseIterator: Course) => courseIterator.id === course.id);
-            COURSES[index] = course;
+            return this.httpClient.put<Course>(`${this.coursesUrl}/${course.id}`, course);
+        }
+        else{
+            return this.httpClient.post<Course>(`${this.coursesUrl}`, course);
         }
         
+    }
+
+    deleteById(id: number): Observable<any>{
+        return this.httpClient.delete<any>(`${this.coursesUrl}/${id}`);
     }
 }
 
@@ -40,7 +46,7 @@ var COURSES: Course[] = [
         code: 'XLF-1212',
         rating: 3,
         price: 12.99,
-        imgUrl: '/assets/cli.png',
+        imgUrl: 'src/assets/cli.png',
     },
     {
         id: 2,
@@ -51,7 +57,7 @@ var COURSES: Course[] = [
         code: 'DWQ-3412',
         rating: 3.5,
         price: 24.99,
-        imgUrl: '/assets/forms.png',
+        imgUrl: 'src/assets/forms.png',
     },
     {
         id: 3,
@@ -62,7 +68,7 @@ var COURSES: Course[] = [
         code: 'QPL-0913',
         rating: 4.0,
         price: 36.99,
-        imgUrl: '/assets/http.png',
+        imgUrl: 'src/assets/http.png',
     },
     {
         id: 4,
@@ -73,7 +79,7 @@ var COURSES: Course[] = [
         code: 'OHP-1095',
         rating: 4.5,
         price: 46.99,
-        imgUrl: '/assets/router.png',
+        imgUrl: 'src/assets/router.png',
     },
     {
         id: 5,
@@ -84,7 +90,7 @@ var COURSES: Course[] = [
         code: 'PWY-9381',
         rating: 5,
         price: 56.99,
-        imgUrl: '/assets/animations.png',
+        imgUrl: 'src/assets/animations.png',
         
     }
 ];
