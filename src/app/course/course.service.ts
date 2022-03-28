@@ -46,7 +46,7 @@ var COURSES: Course[] = [
         code: 'XLF-1212',
         rating: 3,
         price: 12.99,
-        imgUrl: '/assets/cli.png',
+        imgUrl: 'assets/cli.png',
     },
     {
         id: 2,
